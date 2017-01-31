@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('webpack-html-plugin');
 module.exports = {
 	entry: {
 		app: __dirname + '/src/index.js',
-		vendor: ['react', 'react-dom']
+		vendor: ['react', 'react-dom', 'redux', 'react-redux', 'immutable', 'redux-immutable', 'classnames']
 	},
 	output: {
 		path: __dirname + '/build',
@@ -21,6 +21,10 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				loader: 'babel'
+			},
+			{
+				test: /\.less$/,
+				loader: 'style!css?modules&localIdentName=[local]-[hash:base64:5]!less'
 			}
 		]
 	},
