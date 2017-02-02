@@ -26,6 +26,8 @@ class App extends React.Component {
 								<Point cur={!!this.props.cur}
 									point={this.props.point}
 								></Point>
+								<p>{ this.props.cur ? '消除行' : '起始行'}</p>
+								<Number></Number>
 							</div>
 						</div>
 					</div>
