@@ -16,11 +16,24 @@ module.exports = {
 		configFile: __dirname + '/.eslintrc.js',
 	},
 	module: {
+		/*preLoaders: [
+			{
+				test: /\.js$/,
+				include: /src/,
+				exclude: /node_modules/,
+				loader: 'eslint'
+			}
+		],*/
 		loaders: [
 			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				loader: 'babel'
+			},
+			{
+				test: /\.json$/,
+				exclude: /node_modules/,
+				loader: 'json'
 			},
 			{
 				test: /\.less$/,

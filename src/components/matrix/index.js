@@ -65,7 +65,6 @@ export default class Matrix extends React.Component {
 		} else {
 			matrix = this.getResult();
 		}
-		console.log(matrix)
 		return (
 			<div className = {style.matrix}>{
 				matrix.map((p, k1) => (<p key={k1}>

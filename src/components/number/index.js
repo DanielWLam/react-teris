@@ -38,7 +38,16 @@ export default class Number extends React.Component {
 		for (let i = 0, len = this.props.length - num.length; i < len; i++) {
 			num.unshift('n');
 		}
-		console.log(num)
 		return (render(num));
 	}
+}
+
+Number.propTypes = {
+	number: React.PropTypes.number,
+	length: React.PropTypes.number,
+	time: React.PropTypes.bool
+}
+
+Number.defaultProps = {
+	length: 6
 }
