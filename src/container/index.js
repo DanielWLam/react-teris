@@ -5,6 +5,8 @@ import Matrix from '../components/matrix';
 import Point from '../components/point';
 import Number from '../components/number';
 import Next from '../components/next';
+import Music from '../components/music';
+import Pause from '../components/pause';
 import style from './index.less';
 
 class App extends React.Component {
@@ -12,7 +14,6 @@ class App extends React.Component {
 		super();
 	}
 	render() {
-		console.log(this.props)
 		return(
 			<div>
 				<div>
@@ -38,6 +39,11 @@ class App extends React.Component {
 								></Number>
 								<p>下一个</p>
 								<Next data={this.props.next}></Next>
+								<div className={style.bottom}>
+									
+									<Pause data={this.props.pause}></Pause>
+									<Number></Number>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -47,10 +53,18 @@ class App extends React.Component {
 	}
 }
 
+App.propTypes = {
+	matrix: React.PropTypes.object.isRequired,
+	cur: React.PropTypes.object,
+	next: React.PropTypes.string.isRequired
+}
+
 const mapStateToProps = (state) => ({
 	matrix: state.get('matrix'),
 	cur: state.get('cur'),
-	next: state.get('next')
+	next: state.get('next'),
+	// music: state.get('music'),
+	pause: state.get('pause')
 })
 
 export default connect(mapStateToProps)(App);
