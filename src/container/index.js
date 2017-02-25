@@ -7,6 +7,7 @@ import Number from '../components/number';
 import Next from '../components/next';
 import Music from '../components/music';
 import Pause from '../components/pause';
+import Keyboard from '../components/keyboard';
 import style from './index.less';
 
 class App extends React.Component {
@@ -14,8 +15,9 @@ class App extends React.Component {
 		super();
 	}
 	render() {
+		let filling = 0;
 		return(
-			<div>
+			<div className={style.app}>
 				<div>
 					<Decorate></Decorate>
 					<div className={style.screen}>
@@ -48,6 +50,7 @@ class App extends React.Component {
 						</div>
 					</div>
 				</div>
+				<Keyboard filling={filling} keyboard={this.props.keyboard}></Keyboard>
 			</div>
 		)
 	}
@@ -56,7 +59,8 @@ class App extends React.Component {
 App.propTypes = {
 	matrix: React.PropTypes.object.isRequired,
 	cur: React.PropTypes.object,
-	next: React.PropTypes.string.isRequired
+	next: React.PropTypes.string.isRequired,
+	keyboard: React.PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -64,7 +68,8 @@ const mapStateToProps = (state) => ({
 	cur: state.get('cur'),
 	next: state.get('next'),
 	// music: state.get('music'),
-	pause: state.get('pause')
+	pause: state.get('pause'),
+	keyboard: state.get('keyboard')
 })
 
 export default connect(mapStateToProps)(App);
