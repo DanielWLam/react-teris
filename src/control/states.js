@@ -3,7 +3,6 @@ import store from '../store';
 import { want, isClear, isOver } from '../unit/';
 import actions from '../actions';
 import { speeds, blankLine, blankMatrix, clearPoints, eachLines } from '../unit/const';
-import { music } from '../unit/music';
 
 
 const getStartMatrix = (startLines) => { // 生成startLines
@@ -43,9 +42,7 @@ const states = {
 
   // 游戏开始
   start: () => {
-    if (music.start) {
-      music.start();
-    }
+    
     const state = store.getState();
     states.dispatchPoints(0);
     store.dispatch(actions.speedRun(state.get('speedStart')));
@@ -105,15 +102,15 @@ const states = {
     states.dispatchPoints(addPoints);
 
     if (isClear(matrix)) {
-      if (music.clear) {
-        music.clear();
-      }
+      // if (music.clear) {
+      //   music.clear();
+      // }
       return;
     }
     if (isOver(matrix)) {
-      if (music.gameover) {
-        music.gameover();
-      }
+      // if (music.gameover) {
+      //   music.gameover();
+      // }
       states.overStart();
       return;
     }

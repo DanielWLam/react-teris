@@ -1,24 +1,62 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
+
 import Decorate from '../components/decorate';
 import Matrix from '../components/matrix';
 import Point from '../components/point';
 import Number from '../components/number';
 import Next from '../components/next';
-import Music from '../components/music';
 import Pause from '../components/pause';
 import Keyboard from '../components/keyboard';
 import style from './index.less';
 
+import { transform } from '../unit/const';
+
 class App extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			w: document.documentElement.clientWidth,
+			h: document.documentElement.clientHeight
+		}
+	}
+	componentwillMount() {
+		window.addEventListener('resize', this.resize.bind(this), true);
+	}
+	resize() {
+		this.setState({
+			w: document.documentElement.clientWidth,
+			h: docuemnt.documentElement.clientHeight
+		})
 	}
 	render() {
 		let filling = 0;
+		const size = (() => {
+			const w = this.state.w;
+			const h = this.state.h;
+			const ratio = h / w;
+			let scale;
+			let css = {};
+			if (ratio < 1.5) {
+				scale = h / 960;
+			} else {
+				scale = w / 640;
+				filling = ( h - (960 * scale )) / scale / 3;
+				css = {
+					paddingTop: Math.floor(filling) + 42,
+					paddingBottom: Math.floor(filling),
+					marginTop: Math.floor(-480 - (filling * 1.5))
+				}
+			}
+			css[transform] = `scale(${scale})`;
+			return css;
+		})();
 		return(
-			<div className={style.app}>
-				<div>
+			<div className={style.app}
+				style={size}
+			>
+				<div className={classnames({ [style.rect]: true, [style.drop]: this.props.drop })}>
 					<Decorate></Decorate>
 					<div className={style.screen}>
 						<div className={style.panel}>
@@ -67,7 +105,6 @@ const mapStateToProps = (state) => ({
 	matrix: state.get('matrix'),
 	cur: state.get('cur'),
 	next: state.get('next'),
-	// music: state.get('music'),
 	pause: state.get('pause'),
 	keyboard: state.get('keyboard')
 })
