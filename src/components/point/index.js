@@ -5,7 +5,7 @@ export default class Point extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			label: '',
+			label: 'MAX',
 			number: 0
 		}
 	}

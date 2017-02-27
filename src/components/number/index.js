@@ -13,7 +13,7 @@ const render = (data) => (
 );
 
 const formate = (num) => {
-	num < 10 ? `0${num}`.split('') : `${num}`.split('')
+	return num < 10 ? `0${num}`.split('') : `${num}`.split('')
 }
 
 export default class Number extends React.Component {
@@ -24,11 +24,39 @@ export default class Number extends React.Component {
 			time: new Date()
 		}
 	}
+	componentWillMount() {
+		if (!this.props.time) {
+			return ;
+		}
+		const clock = () => {
+			const count = +Number.timeInterval;
+			Number.timeInterval = setTimeout(() => {
+				this.setState({
+					time: new Date(),
+					time_count: count
+				});
+				clock();
+			}, 1000);
+		};
+		clock();
+	}
+	shouldComponentUpdate( { number }) {
+		if (this.props.time) {
+			if (this.state.time_count !== Number.time_count) {
+				if (this.state.time_count !== false) {
+					Number.time_count = this.state.time_count;
+				}
+				return true;
+			}
+			return false;
+		}
+		return this.props.number !== number;
+	}
 	render() {
 		if (this.props.time) {
 			const now = this.state.time;
-			const hour = formate(now.getHours);
-			const min = formate(now.getMinutes);
+			const hour = formate(now.getHours());
+			const min = formate(now.getMinutes());
 			const sec = now.getSeconds() % 2;
 			const t = hour.concat(sec ? 'd' : 'd_c', min);
 			return (render(t));
@@ -40,6 +68,11 @@ export default class Number extends React.Component {
 		}
 		return (render(num));
 	}
+}
+
+Number.statics = {
+	timeInterval: null,
+	time_count: null
 }
 
 Number.propTypes = {

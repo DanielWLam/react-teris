@@ -69,6 +69,7 @@ class App extends React.Component {
 							<div className={style.state}>
 								<Point cur={!!this.props.cur}
 									point={this.props.point}
+									max={this.props.max}
 								></Point>
 								<p>{ this.props.cur ? '消除行' : '起始行'}</p>
 								<Number number={this.props.cur ? this.props.clearLines : this.props.startLines}></Number>
@@ -82,7 +83,7 @@ class App extends React.Component {
 								<div className={style.bottom}>
 									
 									<Pause data={this.props.pause}></Pause>
-									<Number></Number>
+									<Number time></Number>
 								</div>
 							</div>
 						</div>
