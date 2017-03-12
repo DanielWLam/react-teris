@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Gamebox from '../components/gamebox';
+import style from './index.less';
 
 class App extends React.Component{
 	constructor() {
@@ -8,9 +7,8 @@ class App extends React.Component{
 	}
 	render() {
 		return (
-			<div className="app">
-				<h1>hhh</h1>
-				<Gamebox/>
+			<div className={style.app}>
+				
 			</div>
 		)
 	}
