@@ -16,14 +16,14 @@ module.exports = {
 		configFile: __dirname + '/.eslintrc.js',
 	},
 	module: {
-		/*preLoaders: [
+		preLoaders: [
 			{
 				test: /\.js$/,
 				include: /src/,
 				exclude: /node_modules/,
 				loader: 'eslint'
 			}
-		],*/
+		],
 		loaders: [
 			{
 				test: /\.(js|jsx)$/,
