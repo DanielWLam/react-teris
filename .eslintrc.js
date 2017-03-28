@@ -12,7 +12,8 @@ module.exports = {
         "react/jsx-indent": [0],
         "indent": [0],
         "react/self-closing-comp": [0],
-        "react/prefer-stateless-function": [0]
+        "react/prefer-stateless-function": [0],
+        "no-mixed-spaces-and-tabs": [0]
     },
     "env": {
         "browser": true
