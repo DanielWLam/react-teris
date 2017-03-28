@@ -8,6 +8,10 @@ class App extends React.Component {
     return (
       <div className={style.app}>
         <Decorate />
+        <div className={style.screen}>
+					<div className={style.panel}>
+					</div>
+        </div>
       </div>
     );
   }
